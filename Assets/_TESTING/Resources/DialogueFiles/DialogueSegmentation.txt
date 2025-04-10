@@ -1,0 +1,14 @@
+
+Elen "(This is a thought)"
+
+print_1p("meowmeowmeowmeowmeowmeow")
+
+John "Move Left and then Right" print_1p("start Moving"), [wait]moveCharDemo(left), [wait]moveCharDemo(right), print_1p("Done Moving")
+
+John "Let’s play some music!" playSong("headed" -v 0.75 -p 1), setMood(chill)
+
+Elen "hdhdudh" playVoice("e_d1_v2" -v 1.5), SetBackground(Room1 -t "Diagonal Lines" -s 3.5)
+
+setAccomplishment("jdrueurehjsjsgdbe" true), setCLI(Elen 0:Angel 1:Intrigued -s 2.3 -l true)
+
+showScene(false),StopMusic(all -s 1.5)

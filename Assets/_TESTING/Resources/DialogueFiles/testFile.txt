@@ -1,0 +1,1 @@
+this is a random lineElen "command(arguments go here)"Elen "(meow)"Elen "Dialogue" command(args go here)command(more args go here), argCom(yes another one)command("This is another one again")
