@@ -5,6 +5,7 @@ using CHARACTERS;
 using DIALOGUE;
 using NUnit.Framework.Internal;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.Analytics;
 
 namespace TESTING
@@ -24,7 +25,7 @@ namespace TESTING
             // Character Stella = CharacterManager.instance.CreateCharacter("Stella");
             // Character Stella2 = CharacterManager.instance.CreateCharacter("Stella");
             // Character Adam = CharacterManager.instance.CreateCharacter("Adam");
-            StartCoroutine(Test());
+            StartCoroutine(Test_3D_Characters());
         }
 
         IEnumerator Test()
@@ -93,8 +94,132 @@ namespace TESTING
             // //Raelin.TransitionSprite(Raelin.GetSprite("Raelin_7"), 1, 0.3f);
             //
             // //Raelin.MoveToPosition(Vector2.zero, smooth:true);
+            
+            
+             
+            
+            
+            
+            
+            // Character_Sprite Raelin = CreateCharacter("Raelin") as Character_Sprite;
+            //
+            // Character_Live2D Mao = CreateCharacter("Mao") as Character_Live2D;
+            //
+            // Raelin.SetPosition(new Vector2(0, 0));
+            // Mao.SetPosition(new Vector2(1, 0));
+            //
+            // yield return new WaitForSeconds(1);
+            //
+            // Mao.SetMotion("Healing Heart");
+            //
+            // yield return new WaitForSeconds(1);
+            //
+            // Mao.SetExpression("shocked");
+            
+            
+            
+            // Character_Sprite Raelin = CreateCharacter("Raelin") as Character_Sprite;
+            //
+            // Character_Live2D Mao = CreateCharacter("Mao") as Character_Live2D;
+            //
+            // Raelin.SetPosition(new Vector2(0, 0));
+            // Mao.SetPosition(new Vector2(1, 0));
+            //
+            // yield return new WaitForSeconds(1);
+            //
+            // Raelin.FaceRight();
+            // Mao.FaceRight();
+            //
+            // yield return new WaitForSeconds(0.5f);
+            //
+            // Raelin.Flip();
+            // Mao.Flip();
+            
+            // Mao.SetMotion("Healing Heart");
+            
+            // yield return new WaitForSeconds(1);
+            //
+            // Mao.SetExpression("shocked");
+            
+            // yield return new WaitForSeconds(1);
+            // Mao.Hide();
+            //
+            // yield return new WaitForSeconds(1);
+            // Mao.Show();
+            //
+            // yield return new WaitForSeconds(1);
+            // Mao.TransitionColor(Color.red);
+            //
+            // yield return new WaitForSeconds(1);
+            // Mao.TransitionColor(Color.white);
+            
+            // yield return new WaitForSeconds(1);
+            // Mao.Show();
+            
+            // yield return new WaitForSeconds(1);
+            // Mao.FaceDirection(false, 0.3f, false);
+            //
+            // yield return new WaitForSeconds(1);
+            // Mao.FaceDirection(true, 0.3f, false);
+            
+            // yield return new WaitForSeconds(1);
+            // Mao.FaceRight();
+            //
+            // yield return new WaitForSeconds(1);
+            // Mao.Flip();
+            //
+            // yield return new WaitForSeconds(1);
+            // Mao.Highlight();
+            //
+            // yield return new WaitForSeconds(1);
+            // Mao.UnHighlight();
+            //
+            // yield return new WaitForSeconds(1);
+            // Mao.Highlight();
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
 
             yield return null;
+        }
+
+        IEnumerator Test_3D_Characters()
+        {
+            // Character_Sprite Raelin = CreateCharacter("Raelin") as Character_Sprite;
+            // Character_Live2D Mao = CreateCharacter("Mao") as Character_Live2D;
+            // Character_Model3D Yae = CreateCharacter("Yae Miko") as Character_Model3D;
+            //
+            // Raelin.SetPosition(new Vector2(0, 0));
+            // Mao.SetPosition(new Vector2(0.5f, 0));
+            // // Yae.SetPosition(new Vector2(1, 0));
+            //
+            // yield return new WaitForSeconds(1);
+            //
+            // Raelin.TransitionColor(Color.red, 0.1f);
+            // Mao.TransitionColor(Color.red, 0.1f); 
+            // Yae.TransitionColor(Color.red, 0.1f);
+            //
+            // yield return new WaitForSeconds(2f);
+            //
+            // Raelin.UnHighlight();
+            // Mao.UnHighlight();
+            // Yae.UnHighlight();
+            //
+            // yield return new WaitForSeconds(2f);
+            // Raelin.Highlight();
+            // Mao.Highlight();
+            // Yae.Highlight();
+
+            yield return null;
+
         }
 
         // Update is called once per frame

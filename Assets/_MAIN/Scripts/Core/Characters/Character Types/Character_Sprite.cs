@@ -19,7 +19,7 @@ namespace CHARACTERS
         private string artAssetsDirectory = "";
         
         public override bool isVisible {
-            get { return isRevealing || rootCG.alpha == 1; }
+            get { return isRevealing || rootCG.alpha > 0; }
             set { rootCG.alpha = value ? 1 : 0; }
         }
         
@@ -103,14 +103,14 @@ namespace CHARACTERS
             return spriteLayer.TransitionSprite(sprite, speed);
         }
 
-        public override IEnumerator ShowingOrHiding(bool show)
+        public override IEnumerator ShowingOrHiding(bool show, float spedMultiplier = 1f)
         {
             float targetAlpha = show ? 1f : 0;
             CanvasGroup self = rootCG;
 
             while (self.alpha != targetAlpha)
             {
-                self.alpha = Mathf.MoveTowards(self.alpha, targetAlpha, 3f * Time.deltaTime);
+                self.alpha = Mathf.MoveTowards(self.alpha, targetAlpha, 3f * Time.deltaTime * spedMultiplier);
                 yield return null;
             }
 
@@ -131,11 +131,11 @@ namespace CHARACTERS
             }
         }
         
-        public override IEnumerator ChangingColor(Color color, float speed)
+        public override IEnumerator ChangingColor(float speed)
         {
             foreach (CharacterSpriteLayer layer in layers)
             {
-                layer.TransitionColor(color, speed);
+                layer.TransitionColor(displayColor, speed);
             }
 
             yield return null;
@@ -148,13 +148,21 @@ namespace CHARACTERS
             co_changingColor = null;
         }
         
-        public override IEnumerator Highlighting(bool highlight, float speedMultiplier)
+        public override IEnumerator Highlighting(float speedMultiplier, bool immediate = false)
         {
-            Color tergertColor = displayColor;
+            Color targertColor = displayColor;
 
             foreach (CharacterSpriteLayer layer in layers)
             {
-                layer.TransitionColor(tergertColor, speedMultiplier);
+                if (immediate)
+                {
+                    layer.SetColor(displayColor);
+                }
+                else
+                {
+                    layer.TransitionColor(targertColor, speedMultiplier);
+                }
+                
             }
 
             yield return null;
@@ -185,6 +193,18 @@ namespace CHARACTERS
             }
 
             co_flipping = null;
+        }
+        
+        public override void OnReceiveCastingExpression(int layer, string expression)
+        {
+            Sprite sprite = GetSprite(expression);
+            if (sprite == null)
+            {
+                Debug.LogWarning($"Sprite '{expression}' could not be found for character '{name}'");
+                return;
+            }
+
+            TransitionSprite(sprite, layer);
         }
 
     }

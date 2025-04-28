@@ -8,5 +8,8 @@ namespace COMMANDS
         {
         
         }
+        
+        public static CommandParameters ConvertDataToParameters(string[] data, int startingIndex = 0)
+            => new CommandParameters(data, startingIndex);
     }
 }

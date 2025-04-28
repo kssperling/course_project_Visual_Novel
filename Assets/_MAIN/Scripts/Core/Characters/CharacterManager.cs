@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DIALOGUE;
+using Live2D.Cubism.Framework.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace CHARACTERS
     public class CharacterManager : MonoBehaviour
     {
         public static CharacterManager instance { get; private set; }
+        
+        public Character[] allCharacters => characters.Values.ToArray();
         private Dictionary<string, Character> characters = new Dictionary<string, Character>();
 
         private CharacterConfigSO config => DialogueSystem.instance.config.characterConfigurationAsset;
@@ -25,11 +28,11 @@ namespace CHARACTERS
 
         [SerializeField] private RectTransform _characterpanel = null;
         [SerializeField] private RectTransform _characterpanel_live2D = null;
-        [SerializeField] private RectTransform _characterpanel_model3D = null;
+        [SerializeField] private Transform _characterpanel_model3D = null;
         
         public RectTransform characterPanel => _characterpanel;
         public RectTransform characterPanelLive2D => _characterpanel_live2D;
-        public RectTransform characterPanelModel3D => _characterpanel_model3D;
+        public Transform characterPanelModel3D => _characterpanel_model3D;
         
         private void Awake()
         {
@@ -54,7 +57,9 @@ namespace CHARACTERS
             return null;
         }
 
-        public Character CreateCharacter(string characterName)
+        public bool HasCharacter(string characterName) => characters.ContainsKey(characterName.ToLower());
+
+        public Character CreateCharacter(string characterName, bool revealAfterCreation = false)
         {
             if (characters.ContainsKey(characterName.ToLower()))
             {
@@ -67,6 +72,11 @@ namespace CHARACTERS
             Character character = CreateCharacterFromInfo(info);
             
             characters.Add(info.name.ToLower(), character);
+
+            if (revealAfterCreation)
+            {
+                character.Show();
+            }
             
             return character;
         }
@@ -163,7 +173,21 @@ namespace CHARACTERS
             {
                 Debug.Log($"{character.name} priority is {character.priority}");
                 character.root.SetSiblingIndex(i++);
+                character.OnSort(i);
             }
+        }
+
+        public int GetCharacterCountFromCharacterType(Character.CharacterType charType)
+        {
+            int count = 0;
+            foreach (var c in characters.Values)
+            {
+                if (c.config.characterType == charType)
+                {
+                    count++;
+                }
+            }
+            return count;
         }
 
         private class CHARACTER_INFO
